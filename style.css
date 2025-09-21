@@ -1,0 +1,30 @@
+/* Fondo general */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#fff9e6, #fff3d6);
+  font-family: Arial, sans-serif;
+}
+
+/* Botón estilo "te quiero" */
+a.boton {
+  text-decoration: none;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: bold;
+  color: #b35000;
+  background: #ffdb4d;
+  padding: 18px 36px;
+  border-radius: 18px;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  text-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, background 0.3s;
+  animation: pulse 2s infinite;
+}
+
+/* Animación de latido */
+@keyframes pulse {
+  0%   { transform: scale(1);

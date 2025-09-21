@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Te quiero 🌼</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#fff9e6, #fff3d6);
+      font-family: system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 500px;   
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .message {
+      position: absolute;
+      font-size: clamp(32px, 6vw, 80px);
+      color: #b35000;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10;
+      text-align: center;
+    }
+
+    .flower {
+      position: absolute;
+      width: 90px;  
+      height: auto;
+      transform: scale(0);
+      opacity: 0;
+      animation: appear 1s forwards;
+    }
+
+    /* 🌼 Flores de las esquinas */
+    .corner {
+      position: fixed;
+      width: 200px;   /* en grande */
+      height: auto;
+      opacity: 0.9;
+      z-index: 5;
+    }
+
+    .top-left { top: 10px; left: 10px; }
+    .top-right { top: 10px; right: 10px; }
+    .bottom-left { bottom: 10px; left: 10px; }
+    .bottom-right { bottom: 10px; right: 10px; }
+
+    @keyframes appear {
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🌸 Corazón de flores -->
+  <div class="container">
+    <div class="message">te quiero</div>
+  </div>
+
+  <!-- 🌸 Flores grandes en las esquinas -->
+  <img src="flores/esquinas.png" class="corner top-left">
+  <img src="flores/esquinas.png" class="corner top-right">
+  <img src="flores/esquinas.png" class="corner bottom-left">
+  <img src="flores/esquinas.png" class="corner bottom-right">
+
+  <script>
+    const container = document.querySelector('.container');
+    const numFlores = 24; // número de flores en el corazón
+    const scale = 10;     // escala del corazón
+
+    for (let i = 0; i < numFlores; i++) {
+      const t = (i / numFlores) * Math.PI * 2;
+
+      // Fórmula del corazón
+      const x = scale * 16 * Math.pow(Math.sin(t), 3);
+      const y = -scale * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+      const flower = document.createElement("img");
+      flower.src = "flores/florecita.png";  // ruta corregida
+      flower.className = "flower";
+      flower.style.left = `calc(50% + ${x}px - 45px)`;
+      flower.style.top  = `calc(50% + ${y}px - 40px)`;
+      flower.style.animationDelay = `${i * 0.15}s`;
+
+      container.appendChild(flower);
+    }
+  </script>
+</body>
+</html>
